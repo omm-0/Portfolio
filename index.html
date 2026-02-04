@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Om Mishra | Web Developer & Founder</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#064e3b', // Dark Green
+                        secondary: '#3b82f6', // Light Blue
+                        accent: '#10b981', // Emerald Green
+                        bgLight: '#f0f9ff', // Very Light Blue tint
+                        darkText: '#0f172a',
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        html { scroll-behavior: smooth; }
+        
+        /* Glassmorphism */
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Custom Checkbox Styling */
+        .custom-checkbox:checked + div {
+            background-color: #eff6ff;
+            border-color: #3b82f6;
+            color: #3b82f6;
+        }
+        .custom-checkbox:checked + div .check-icon {
+            opacity: 1;
+        }
+
+        /* Profile Hover */
+        .profile-upload-overlay {
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .profile-container:hover .profile-upload-overlay {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-green-200 selection:text-green-900">
+
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 glass-nav top-0 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <div class="flex-shrink-0 flex items-center cursor-pointer" onclick="window.scrollTo(0,0)">
+                    <span class="text-3xl font-extrabold text-primary tracking-tight">OM<span class="text-secondary">.</span>DEV</span>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#home" class="text-gray-600 hover:text-primary font-medium transition hover:scale-105">Home</a>
+                    <a href="#about" class="text-gray-600 hover:text-primary font-medium transition hover:scale-105">About</a>
+                    <a href="#ventures" class="text-gray-600 hover:text-primary font-medium transition hover:scale-105">Ventures</a>
+                    <a href="#projects" class="text-gray-600 hover:text-primary font-medium transition hover:scale-105">Projects</a>
+                    <a href="#contact" class="px-6 py-2.5 bg-primary text-white rounded-full hover:bg-green-900 transition shadow-lg transform hover:-translate-y-1 font-semibold">Let's Talk</a>
+                </div>
+
+                <!-- Mobile Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="menu-btn" class="text-primary focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="fixed inset-y-0 right-0 w-72 bg-white shadow-2xl z-50 transform translate-x-full transition-transform duration-300 ease-in-out md:hidden flex flex-col pt-24 px-8 space-y-8">
+            <button id="close-menu" class="absolute top-6 right-6 text-gray-500 hover:text-red-500">
+                <i class="fas fa-times text-2xl"></i>
+            </button>
+            <a href="#home" class="text-xl font-medium text-gray-800 hover:text-primary mobile-link border-b pb-2">Home</a>
+            <a href="#about" class="text-xl font-medium text-gray-800 hover:text-primary mobile-link border-b pb-2">About</a>
+            <a href="#ventures" class="text-xl font-medium text-gray-800 hover:text-primary mobile-link border-b pb-2">Ventures</a>
+            <a href="#projects" class="text-xl font-medium text-gray-800 hover:text-primary mobile-link border-b pb-2">Projects</a>
+            <a href="#contact" class="text-xl font-bold text-primary mobile-link">Contact Me</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="pt-32 pb-20 bg-gradient-to-br from-green-50 via-blue-50 to-white min-h-screen flex items-center relative overflow-hidden">
+        <div class="absolute top-20 left-10 w-64 h-64 bg-green-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
+        <div class="absolute top-20 right-10 w-64 h-64 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
+            <div class="flex flex-col-reverse md:flex-row items-center justify-between gap-12">
+                
+                <!-- Text Content -->
+                <div class="md:w-3/5 space-y-8 text-center md:text-left fade-in-up">
+                    <div class="inline-flex items-center px-4 py-2 rounded-full bg-white border border-gray-200 shadow-sm text-secondary text-sm font-semibold tracking-wide">
+                        <span class="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></span>
+                        Founder & Full Stack Developer
+                    </div>
+                    
+                    <h1 class="text-5xl md:text-7xl font-extrabold leading-tight text-darkText">
+                        Turning Ideas Into <br>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">Scalable Startups</span>
+                    </h1>
+                    
+                    <p class="text-lg text-gray-600 leading-relaxed max-w-xl mx-auto md:mx-0">
+                        I'm <strong class="text-primary">Om Mishra</strong>. I build high-performance websites and manage two startups: <strong>Study-Buddie</strong> (ERP) and <strong>Your Own Applications</strong> (Dev Agency).
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row gap-5 justify-center md:justify-start pt-2">
+                        <a href="#contact" class="px-8 py-4 bg-primary text-white rounded-lg hover:bg-green-800 transition shadow-lg hover:shadow-xl font-semibold text-lg flex items-center justify-center gap-2 transform hover:-translate-y-1">
+                            Hire Me <i class="fas fa-paper-plane text-sm"></i>
+                        </a>
+                        <!-- Resume Button: Add your PDF link in href below -->
+                        <a href="#" target="_blank" onclick="alert('Please link your Resume PDF or Google Drive link in the code!')" class="px-8 py-4 bg-white border border-gray-300 text-gray-700 rounded-lg hover:border-secondary hover:text-secondary transition shadow-sm font-medium text-lg flex items-center justify-center gap-2">
+                            <i class="fas fa-file-pdf"></i> View Resume
+                        </a>
+                    </div>
+                    
+                    <div class="flex items-center justify-center md:justify-start gap-6 pt-4 text-gray-500">
+                        <a href="https://www.linkedin.com/in/om-mishra-446578390/" target="_blank" class="hover:text-blue-600 transition hover:scale-110"><i class="fab fa-linkedin text-3xl"></i></a>
+                        <a href="mailto:ommuu.000@gmail.com" class="hover:text-red-500 transition hover:scale-110"><i class="fas fa-envelope text-3xl"></i></a>
+                        <a href="https://github.com/Orum-tech" target="_blank" class="hover:text-gray-900 transition hover:scale-110"><i class="fab fa-github text-3xl"></i></a>
+                    </div>
+                </div>
+
+                <!-- Profile Image -->
+                <div class="md:w-2/5 flex justify-center relative fade-in-up">
+                    <div class="relative w-80 h-80 md:w-[450px] md:h-[450px] profile-container cursor-pointer group">
+                        <div class="absolute inset-0 border-2 border-dashed border-gray-300 rounded-full animate-[spin_10s_linear_infinite]"></div>
+                        <div class="absolute -inset-4 border border-gray-200 rounded-full opacity-50"></div>
+                        <img id="profile-img" src="https://api.dicebear.com/7.x/avataaars/svg?seed=OmMishra&backgroundColor=c0aede&clothing=blazerAndShirt" alt="Om Mishra" class="relative rounded-full shadow-2xl border-4 border-white w-full h-full object-cover transition duration-500 group-hover:scale-[1.02]">
+                        <div class="absolute inset-0 bg-black bg-opacity-40 rounded-full flex flex-col items-center justify-center text-white profile-upload-overlay backdrop-blur-sm" onclick="document.getElementById('file-input').click()">
+                            <i class="fas fa-camera text-4xl mb-2"></i>
+                            <span class="font-medium">Change Photo</span>
+                        </div>
+                        <input type="file" id="file-input" class="hidden" accept="image/*" onchange="previewImage(event)">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="bg-primary py-10 text-white relative z-20 -mt-10 mx-4 md:mx-20 rounded-xl shadow-2xl">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center divide-x divide-green-800">
+            <div><h3 class="text-3xl font-bold">10+</h3><p class="text-green-200 text-sm mt-1">Projects Completed</p></div>
+            <div><h3 class="text-3xl font-bold">2</h3><p class="text-green-200 text-sm mt-1">Startups Founded</p></div>
+            <div><h3 class="text-3xl font-bold">100%</h3><p class="text-green-200 text-sm mt-1">Job Success</p></div>
+            <div><h3 class="text-3xl font-bold">2+</h3><p class="text-green-200 text-sm mt-1">Years Exp.</p></div>
+        </div>
+    </section>
+
+    <!-- Ventures / Startups Section -->
+    <section id="ventures" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in-up">
+                <h4 class="text-secondary font-bold uppercase tracking-wider mb-2">Entrepreneurship</h4>
+                <h2 class="text-4xl font-bold text-darkText">My Founded Startups</h2>
+                <div class="w-20 h-1.5 bg-primary mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <!-- Startup 1: Study-Buddie -->
+                <div class="bg-gradient-to-br from-green-50 to-white p-8 rounded-2xl shadow-xl border border-green-100 fade-in-up">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center text-primary text-3xl">
+                            <i class="fas fa-school"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-900">Study-Buddie</h3>
+                            <span class="text-xs font-bold text-white bg-primary px-2 py-1 rounded">PRODUCT</span>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-6">
+                        A comprehensive School Management ERP system revolutionizing education administration. I built this from scratch to handle attendance, grades, and parent-teacher communication seamlessly.
+                    </p>
+                    <div class="flex gap-2 mb-4">
+                         <span class="px-3 py-1 bg-white border text-xs font-bold rounded-full">React</span>
+                         <span class="px-3 py-1 bg-white border text-xs font-bold rounded-full">Node.js</span>
+                         <span class="px-3 py-1 bg-white border text-xs font-bold rounded-full">Firebase</span>
+                    </div>
+                </div>
+
+                <!-- Startup 2: Your Own Applications -->
+                <div class="bg-gradient-to-br from-blue-50 to-white p-8 rounded-2xl shadow-xl border border-blue-100 fade-in-up">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center text-secondary text-3xl">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-900">Your Own Applications</h3>
+                            <span class="text-xs font-bold text-white bg-secondary px-2 py-1 rounded">AGENCY</span>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-6">
+                        My development agency where we turn client ideas into reality. We specialize in building custom applications, SEO-friendly websites, and digital solutions tailored to specific business needs.
+                    </p>
+                    <div class="flex gap-2 mb-4">
+                         <span class="px-3 py-1 bg-white border text-xs font-bold rounded-full">App Dev</span>
+                         <span class="px-3 py-1 bg-white border text-xs font-bold rounded-full">Web Dev</span>
+                         <span class="px-3 py-1 bg-white border text-xs font-bold rounded-full">Consulting</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-24 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 fade-in-up">
+                <h2 class="text-4xl font-bold text-darkText">Recent Client Works</h2>
+                <p class="text-gray-600 mt-2">Projects delivered under "Your Own Applications" & Freelancing</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Parakk ERP -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition duration-300 fade-in-up">
+                    <div class="p-6">
+                        <i class="fas fa-chart-line text-4xl text-blue-400 mb-4"></i>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Parakk ERP</h3>
+                        <p class="text-gray-600 text-sm mb-4">Business efficiency and inventory management ERP solution.</p>
+                        <a href="https://parakk-erp.site" target="_blank" class="text-secondary font-medium hover:underline">Visit Website &rarr;</a>
+                    </div>
+                </div>
+
+                <!-- Decor My Event -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition duration-300 fade-in-up">
+                    <div class="p-6">
+                        <i class="fas fa-glass-cheers text-4xl text-pink-400 mb-4"></i>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Decor My Event</h3>
+                        <p class="text-gray-600 text-sm mb-4">Event management and decoration booking platform.</p>
+                        <a href="https://decormyevent.site" target="_blank" class="text-secondary font-medium hover:underline">Visit Website &rarr;</a>
+                    </div>
+                </div>
+
+                <!-- Pitch in 180 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition duration-300 fade-in-up">
+                    <div class="p-6">
+                        <i class="fas fa-stopwatch text-4xl text-yellow-400 mb-4"></i>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Pitch in 180 Sec</h3>
+                        <p class="text-gray-600 text-sm mb-4">Platform for startups to pitch ideas to investors.</p>
+                        <a href="https://pitchin180sec.in" target="_blank" class="text-secondary font-medium hover:underline">Visit Website &rarr;</a>
+                    </div>
+                </div>
+                
+                 <!-- Nest of Moms -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition duration-300 fade-in-up">
+                    <div class="p-6">
+                        <i class="fas fa-baby-carriage text-4xl text-purple-400 mb-4"></i>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Nest of Moms</h3>
+                        <p class="text-gray-600 text-sm mb-4">Community resource center for mothers.</p>
+                        <a href="https://nestofmoms.com" target="_blank" class="text-secondary font-medium hover:underline">Visit Website &rarr;</a>
+                    </div>
+                </div>
+
+                <!-- Moms Maitri -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition duration-300 fade-in-up">
+                    <div class="p-6">
+                        <i class="fas fa-users text-4xl text-indigo-400 mb-4"></i>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Moms Maitri</h3>
+                        <p class="text-gray-600 text-sm mb-4">Social networking support group for moms.</p>
+                        <a href="https://momsmaitri.netlify.app" target="_blank" class="text-secondary font-medium hover:underline">Visit Website &rarr;</a>
+                    </div>
+                </div>
+                
+                <!-- More on GitHub -->
+                <div class="bg-gray-100 rounded-xl flex items-center justify-center p-6 hover:bg-gray-200 transition duration-300 fade-in-up">
+                    <a href="https://github.com/omm-0" target="_blank" class="text-center">
+                        <i class="fab fa-github text-4xl text-gray-700 mb-2"></i>
+                        <p class="font-bold text-gray-800">View More on GitHub</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Improved Contact Section with Formspree -->
+    <section id="contact" class="py-24 bg-white relative">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in-up">
+                <h4 class="text-secondary font-bold uppercase tracking-wider mb-2">Get In Touch</h4>
+                <h2 class="text-4xl font-bold text-darkText">Let's Work Together</h2>
+                <p class="text-gray-600 mt-4">Fill out the form below to send me an email directly.</p>
+            </div>
+
+            <div class="bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100 flex flex-col md:flex-row fade-in-up">
+                
+                <!-- Contact Info Sidebar -->
+                <div class="bg-primary text-white p-10 md:w-1/3 flex flex-col justify-between relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-green-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20"></div>
+                    <div>
+                        <h3 class="text-2xl font-bold mb-6">Contact Info</h3>
+                        <div class="space-y-6">
+                            <div class="flex items-start gap-4">
+                                <i class="fas fa-envelope mt-1 text-green-300"></i>
+                                <div>
+                                    <p class="text-xs text-green-200 uppercase">Email</p>
+                                    <p class="font-medium">ommuu.000@gmail.com</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <i class="fab fa-linkedin mt-1 text-green-300"></i>
+                                <div>
+                                    <p class="text-xs text-green-200 uppercase">LinkedIn</p>
+                                    <p class="font-medium">Om Mishra</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <i class="fas fa-map-marker-alt mt-1 text-green-300"></i>
+                                <div>
+                                    <p class="text-xs text-green-200 uppercase">Location</p>
+                                    <p class="font-medium">India</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-12">
+                        <p class="text-green-200 text-sm mb-4">Connect on Socials</p>
+                        <div class="flex gap-4">
+                             <a href="https://github.com/Orum-tech" target="_blank" class="w-10 h-10 rounded-full bg-green-800 flex items-center justify-center hover:bg-white hover:text-primary transition"><i class="fab fa-github"></i></a>
+                             <a href="https://www.linkedin.com/in/om-mishra-446578390/" target="_blank" class="w-10 h-10 rounded-full bg-green-800 flex items-center justify-center hover:bg-white hover:text-primary transition"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Form Section -->
+                <div class="p-10 md:w-2/3">
+                    <form action="https://formspree.io/f/mbdkvazp" method="POST" class="space-y-6">
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Your Name</label>
+                                <input type="text" name="name" required class="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 focus:border-secondary focus:ring-2 focus:ring-blue-100 outline-none transition" placeholder="John Doe">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Your Email</label>
+                                <input type="email" name="email" required class="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 focus:border-secondary focus:ring-2 focus:ring-blue-100 outline-none transition" placeholder="john@example.com">
+                            </div>
+                        </div>
+
+                        <!-- Checkbox Section -->
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-3">What're you looking for, Om?</label>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                <label class="cursor-pointer relative">
+                                    <input type="checkbox" name="interest" value="Freelancing" class="custom-checkbox hidden">
+                                    <div class="border border-gray-200 rounded-lg p-3 text-sm font-medium text-gray-600 hover:bg-gray-50 transition flex items-center justify-between">
+                                        Freelancing
+                                        <i class="fas fa-check text-blue-500 opacity-0 transition check-icon"></i>
+                                    </div>
+                                </label>
+                                <label class="cursor-pointer relative">
+                                    <input type="checkbox" name="interest" value="App Development" class="custom-checkbox hidden">
+                                    <div class="border border-gray-200 rounded-lg p-3 text-sm font-medium text-gray-600 hover:bg-gray-50 transition flex items-center justify-between">
+                                        App Development
+                                        <i class="fas fa-check text-blue-500 opacity-0 transition check-icon"></i>
+                                    </div>
+                                </label>
+                                <label class="cursor-pointer relative">
+                                    <input type="checkbox" name="interest" value="Web Development" class="custom-checkbox hidden">
+                                    <div class="border border-gray-200 rounded-lg p-3 text-sm font-medium text-gray-600 hover:bg-gray-50 transition flex items-center justify-between">
+                                        Web Development
+                                        <i class="fas fa-check text-blue-500 opacity-0 transition check-icon"></i>
+                                    </div>
+                                </label>
+                                <label class="cursor-pointer relative">
+                                    <input type="checkbox" name="interest" value="ERP Solution" class="custom-checkbox hidden">
+                                    <div class="border border-gray-200 rounded-lg p-3 text-sm font-medium text-gray-600 hover:bg-gray-50 transition flex items-center justify-between">
+                                        ERP Solution
+                                        <i class="fas fa-check text-blue-500 opacity-0 transition check-icon"></i>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Message</label>
+                            <textarea name="message" rows="4" required class="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 focus:border-secondary focus:ring-2 focus:ring-blue-100 outline-none transition" placeholder="Tell me about your project..."></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full py-4 bg-primary text-white font-bold rounded-lg hover:bg-green-800 transition shadow-lg transform hover:-translate-y-1">
+                            Send Message <i class="fas fa-paper-plane ml-2"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-50 py-12 border-t border-gray-200 text-center">
+        <div class="max-w-7xl mx-auto px-4">
+             <div class="text-3xl font-extrabold text-primary mb-4 tracking-tight">OM<span class="text-secondary">.</span>DEV</div>
+             <p class="text-gray-500 mb-6">Building digital experiences that matter.</p>
+             <p class="text-gray-400 text-sm">&copy; 2024 Om Mishra. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Mobile Menu
+        const menuBtn = document.getElementById('menu-btn');
+        const closeMenu = document.getElementById('close-menu');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        function toggleMenu() {
+            mobileMenu.classList.toggle('translate-x-full');
+        }
+
+        menuBtn.addEventListener('click', toggleMenu);
+        closeMenu.addEventListener('click', toggleMenu);
+        mobileLinks.forEach(link => link.addEventListener('click', toggleMenu));
+
+        // Fade In Animation
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in-up').forEach(el => observer.observe(el));
+
+        // Image Preview
+        function previewImage(event) {
+            const input = event.target;
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('profile-img').src = e.target.result;
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+</body>
+</html>
